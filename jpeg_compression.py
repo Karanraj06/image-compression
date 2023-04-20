@@ -439,11 +439,22 @@ if __name__ == "__main__":
     plot_images function plots the original and compressed images
     Also, it wries the encoded images to a text file encoded_image.txt
     """
-    # plot_images(*analyze_image("path/to/your/image", 8, 10, color=True))
+    # plot_images(*analyze_image(img_path="path/to/your/image", block_size=8, num_coefficients=10, color=True))
 
     """
     Replaces the images folder with the path to your images folder
     plot_graph function plots the PSNR vs Compression Ratio graph
     for all the images in the images folder for different values of num_coefficients
     """
-    # plot_graph("path/to/your/image/folder", color=False)
+    # plot_graph(img_dir_path="path/to/your/image/folder", color=False)
+
+    if input("Analyze a single image (y/n): ") == "y":
+        img_path = input("Enter the path to the image: ")
+        block_size = int(input("Enter the block size (even): "))
+        num_coefficients = int(input("Enter the number of coefficients passed: "))
+        color = input("Is the image color (y/n): ") == "y"
+        plot_images(*analyze_image(img_path, block_size, num_coefficients, color))
+    elif input("Analyzes all images in a folder (y/n): ") == "y":
+        img_dir_path = input("Enter the path to the images folder: ")
+        color = input("Are the images color (y/n): ") == "y"
+        plot_graph(img_dir_path, color)
